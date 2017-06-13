@@ -21,15 +21,11 @@ type Observer interface {
 	//     var spObs otobserver.SpanObserver = observer.OnStartSpan(span, opName, sso)
 	//     ...
 	// }
-	// OnStartSpan function needs to be defined for a package exporting
-	// metrics as well.
 	OnStartSpan(sp Span, operationName string, options StartSpanOptions) SpanObserver
 }
 
 // SpanObserver is created by the Observer and receives notifications about
 // other Span events.
-// Client tracers should define these functions for each of the span operations
-// which should call the registered (observer) callbacks.
 type SpanObserver interface {
 	// Callback called from opentracing.Span.SetOperationName()
 	OnSetOperationName(operationName string)

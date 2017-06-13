@@ -57,7 +57,7 @@ span events :
 
 As noble as our thoughts might be in fetching additional metrics (other than
 latency) for a span using an observer, there are some overhead costs. Not all
-observers need to observe all the span events, in which case, we are keeping
-a (or, some) handler function(s) empty. In effect, we will still call
-these functions, and that will incur overhead. To know more about this and
-other tradeoffs, checkout this [discussion](https://github.com/opentracing/opentracing-go/pull/135#discussion_r105497329)
+observers need to observe all the span events, in which case, we may have
+to keep some callback function(s) empty. In effect, we will still call these
+functions, and that will incur unnecessary overhead. To know more about this
+and other tradeoffs, see this [discussion](https://github.com/opentracing/opentracing-go/pull/135#discussion_r105497329).
