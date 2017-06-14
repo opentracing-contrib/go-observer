@@ -1,6 +1,3 @@
-// Copyright (c) 2017 Hemant Kumar, IBM Corp.
-//           (c) 2017 Yuri Shkuro, Uber Technologies, Inc.
-//
 // This project is licensed under the Apache License 2.0, see LICENSE.
 
 package otobserver
