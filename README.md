@@ -18,9 +18,11 @@ it can be used for anything which needs watching the span events.
 
 ## Installation and Usage
 
-The `otobserver` package provides an API. The (client) tracers (if they want
-to implement the observer interface) can implement this interface. To do
-that, first fetch the package using go get :
+The `otobserver` package provides an API to watch span's events and define
+callbacks for these events. This API would be a functional option to a
+tracer constructor that passes an Observer. 3rd party packages (who want to
+watch the span events) should actually implement this observer API.
+To do that, first fetch the package using go get :
 
 ```
    go get -v github.com/opentracing-contrib/go-observer
@@ -34,8 +36,7 @@ and say :
 
 and then, define the required span event callbacks. These registered
 callbacks would then be called on span events if an observer is created.
-Multiple observers can be registered for a given distributed tracer. Have a
-look at the [jaeger's observer](https://github.com/uber/jaeger-client-go/blob/master/observer.go).
+Tracer may allow registering multiple observers. Have a look at the [jaeger's observer](https://github.com/uber/jaeger-client-go/blob/master/observer.go).
 
 With the required setup implemented in the backend tracers, packages
 watching the span events need to implement the observer api defining what
@@ -58,6 +59,6 @@ span events :
 As noble as our thoughts might be in fetching additional metrics (other than
 latency) for a span using an observer, there are some overhead costs. Not all
 observers need to observe all the span events, in which case, we may have
-to keep some callback function(s) empty. In effect, we will still call these
+to keep some callback functions empty. In effect, we will still call these
 functions, and that will incur unnecessary overhead. To know more about this
 and other tradeoffs, see this [discussion](https://github.com/opentracing/opentracing-go/pull/135#discussion_r105497329).
