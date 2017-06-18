@@ -2,6 +2,8 @@
 
 package otobserver
 
+import opentracing "github.com/opentracing/opentracing-go"
+
 // Observer can be registered with a Tracer to recieve notifications
 // about new Spans. Tracers are not required to support the Observer API.
 // The actual registration depends on the implementation, which might look
@@ -18,7 +20,7 @@ type Observer interface {
 	//     var spObs otobserver.SpanObserver = observer.OnStartSpan(span, opName, sso)
 	//     ...
 	// }
-	OnStartSpan(sp Span, operationName string, options StartSpanOptions) SpanObserver
+	OnStartSpan(sp opentracing.Span, operationName string, options opentracing.StartSpanOptions) SpanObserver
 }
 
 // SpanObserver is created by the Observer and receives notifications about
@@ -29,5 +31,5 @@ type SpanObserver interface {
 	// Callback called from opentracing.Span.SetTag()
 	OnSetTag(key string, value interface{})
 	// Callback called from opentracing.Span.Finish()
-	OnFinish(options FinishOptions)
+	OnFinish(options opentracing.FinishOptions)
 }
