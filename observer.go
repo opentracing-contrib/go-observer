@@ -15,12 +15,18 @@ type Observer interface {
 	// Create and return a span observer. Called when a span starts.
 	// E.g :
 	//     func StartSpan(opName string, opts ...opentracing.StartSpanOption) {
-	//     var sp opentracing.Span
-	//     sso := opentracing.StartSpanOptions{}
-	//     var spObs otobserver.SpanObserver = observer.OnStartSpan(span, opName, sso)
-	//     ...
-	// }
-	OnStartSpan(sp opentracing.Span, operationName string, options opentracing.StartSpanOptions) SpanObserver
+	//         var sp opentracing.Span
+	//         sso := opentracing.StartSpanOptions{}
+	//         var (
+	//             spObs otobserver.SpanObserver
+	//             ok    bool
+	//         )
+	//         if spObs, ok = observer.OnStartSpan(span, opName, sso); ok {
+	//             // we have a valid span observer
+	//         }
+	//         ...
+	//     }
+	OnStartSpan(sp opentracing.Span, operationName string, options opentracing.StartSpanOptions) (SpanObserver, bool)
 }
 
 // SpanObserver is created by the Observer and receives notifications about
