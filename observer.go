@@ -18,12 +18,9 @@ type Observer interface {
 	//     func StartSpan(opName string, opts ...opentracing.StartSpanOption) {
 	//         var sp opentracing.Span
 	//         sso := opentracing.StartSpanOptions{}
-	//         var (
-	//             spObs otobserver.SpanObserver
-	//             ok    bool
-	//         )
-	//         if spObs, ok = observer.OnStartSpan(span, opName, sso); ok {
-	//             // we have a valid span observer
+	//         spanObserver, ok := observer.OnStartSpan(span, opName, sso);
+	//         if ok {
+	//             // we have a valid SpanObserver
 	//         }
 	//         ...
 	//     }
