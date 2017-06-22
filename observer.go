@@ -13,6 +13,7 @@ import opentracing "github.com/opentracing/opentracing-go"
 //
 type Observer interface {
 	// Create and return a span observer. Called when a span starts.
+	// If the Observer is not interested in the given span, it must return (nil, false).
 	// E.g :
 	//     func StartSpan(opName string, opts ...opentracing.StartSpanOption) {
 	//         var sp opentracing.Span
